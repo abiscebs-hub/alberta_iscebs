@@ -1,0 +1,56 @@
+ISCEBS Alberta Chapter website backup
+November 10, 2026
+
+Original repository
+https://github.com/Casey-Co/iscebs-alberta-site
+Website: https://thenucleus.ca
+Default branch: main (ea26326131cf37eaa0684cb6ef9f654e0394323b)
+
+What is in this ZIP
+- site-files-main/ contains the 62 tracked files on main, including HTML,
+  images, scripts, and .github/workflows/sync-board.yml.
+- iscebs-alberta-site.bundle contains the Git history, all three branches,
+  and the two pull-request head refs advertised by the original repository.
+  There were no tags at the time of backup.
+
+Restore the repository with Git history
+1. Create a new empty repository on GitHub. Leave the README, license, and
+   .gitignore options unchecked. Copy the new repository's HTTPS URL.
+2. Extract the backup ZIP and open Git Bash or a terminal in that folder.
+3. Run the following commands, replacing OWNER and NEW-REPO in the URL.
+
+   git clone --bare iscebs-alberta-site.bundle iscebs-alberta-site.git
+   cd iscebs-alberta-site.git
+   git push --all https://github.com/OWNER/NEW-REPO.git
+   git push --tags https://github.com/OWNER/NEW-REPO.git
+
+   The pushes publish branches and tags. The pull-request head refs remain
+   available in the bundle for Git recovery. GitHub pull-request and issue
+   records, release attachments, and repository settings are separate.
+
+Copy just the latest files
+Upload the contents of site-files-main/ into the root of the new repository.
+Include the .github folder and .nojekyll file. This gives the new repository
+a fresh commit history.
+
+Publish the site after restoring it
+- In the new GitHub repository, go to Settings > Pages and select Deploy
+  from a branch, then main and / (root). Test the new Pages deployment.
+- If moving thenucleus.ca, coordinate removing that custom domain from the
+  old repository and adding it to the new repository. Check the domain's
+  DNS records in Wix, especially the www CNAME if the GitHub owner changes,
+  and verify HTTPS after the switch. Leave the live domain connected to
+  the current repository until you are ready to switch.
+- The sync workflow and Wix connection code are in the archive. In the new
+  repository, check that Actions is enabled and run "Sync website from Wix"
+  manually after setting up Pages.
+- Wix still holds the live data for Events, registrations, newsletter
+  issues, and AGM minutes. The archive includes Wix content already
+  committed to GitHub. Export Wix data separately for a Wix backup.
+  If the public address changes, update the allowed redirect URLs in
+  Wix Headless Settings and test the event checkout return link.
+
+GitHub documentation
+https://docs.github.com/en/repositories/creating-and-managing-repositories/duplicating-a-repository
+https://docs.github.com/en/pages/getting-started-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site
+https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site/managing-a-custom-domain-for-your-github-pages-site
